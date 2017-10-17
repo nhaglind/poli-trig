@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Shuzo</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>Shuzu</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
 
-  <body>
+<ul class="nav">
+    <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link" %></li>
+  <% if user_signed_in? -%>
+    <li class="nav-item"><%= link_to 'Submit', new_link_path, class: "nav-link" %></li>
+    <li class="nav-item"><%= link_to 'Account', edit_user_registration_path, class: "nav-link"  %></li>
+    <li class="nav-item"><%= link_to 'Sign out', destroy_user_session_path, :method => :delete, class: "nav-link" %></li>
+	<% else -%>
+    <li class="nav-item"><%= link_to 'Sign up', new_user_registration_path, class: "nav-link"  %></li>
+    <li class="nav-item"><%= link_to 'Sign in', new_user_session_path, class: "nav-link"  %></li>
+	<% end -%>
+</ul>
 
-    <% flash.each do |name, msg| %>
-     <%= content_tag(:div, msg, class: "alert alert-#{name}") %>
-    <% end %>
 
-    <% if user_signed_in? %>
-    <ul>
-      <li><%= link_to 'Submit link', new_link_path %></li>
-      <li><%= link_to 'Account', edit_user_registration_path %></li>
-      <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
-    </ul>
-    <% else %>
-    <ul>
-      <li><%= link_to 'Sign up', new_user_registration_path %></li>
-      <li><%= link_to 'Sign in', new_user_session_path %></li>
-    </ul>
-    <% end %>
+<% flash.each do |name, msg| %>
+	<%= content_tag(:div, msg, class: "alert alert-info") %>
+<% end %>
 
-  <%= yield %>
-  </body>
+<div class="container">
+  <div class="row">
+    <div class="col">
+    <%= yield %>
+    </div>
+  </div>
+</div>
+
+</body>
 </html>
