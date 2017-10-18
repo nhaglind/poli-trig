@@ -16,6 +16,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'devise', '~> 4.2'
 gem 'bootstrap', '~> 4.0.0.beta'
+gem 'acts_as_votable', '~> 0.11.1'
+
 
 
 group :development, :test do
