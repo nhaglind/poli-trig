@@ -1,11 +1,11 @@
 <% @links.each do |link| %>
   <!--<h3><%= link_to link.title, link %> </h3>-->
   <h3><a href="<%= link.url %>"><%= link.title %></a></h3>
-  <p class="small">Submitted <%= time_ago_in_words(link.created_at) %> by User ID: <%= link.user.id %></p>
+  <p class="small">Submitted <%= time_ago_in_words(link.created_at) %> by <%= link.user.name %></p>
 
     <div class="btn-group">
       <!--<a class="btn btn-primary btn-sm" href="<%= link.url %>">Comments</a>-->
-     <%= link_to 'Comments', link_path(link), class: "btn btn-primary btn-sm" %></a>
+      <%= link_to "Comments", link_path(link), class: "btn btn-primary btn-sm" %></a>
       <%= link_to like_link_path(link), method: :put, class: "btn btn-primary btn-sm" do %>
         <span class="glyphicon glyphicon-chevron-up"></span>
         Upvote
